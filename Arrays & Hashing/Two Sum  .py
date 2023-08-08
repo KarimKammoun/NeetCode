@@ -5,9 +5,9 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        a=1
-        for i in range (len(nums)):
-            for c in range(a,len(nums)):
-                if (nums[i]+nums[c])==target:
-                    return [i,c]
-            a=a+1
+        dic={}
+        for i,n in enumerate(nums):
+            dif=target-n
+            if dif in dic:
+                return [dic[dif],i]
+            dic[n]=i
