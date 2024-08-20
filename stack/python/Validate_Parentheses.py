@@ -1,15 +1,13 @@
-class Solution(object):
-    def isValid(self, s):
-        def verif(s):
-            if s == "":
-                return True
-            n = len(s)
-            i = 0
-            while i < n - 1:
-                if (s[i] == "(" and s[i + 1] == ")") or (s[i] == "[" and s[i + 1] == "]") or (s[i] == "{" and s[i + 1] == "}"):
-                    new_s = s[:i] + s[i+2:]
-                    return verif(new_s)
-                i += 1
-            return False
-        test=verif(s)
-        return test
+class Solution:
+    def isValid(self, s: str) -> bool:
+      stack=[]
+      dic={")":"(","]":"[","}":"{"}
+      for i in range(len(s)):
+          if s[i] in dic:
+              if len(stack)>0  and  stack[-1]==dic[s[i]]:
+                  stack.pop()
+              else:
+                  return(False)
+          else:
+              stack.append(s[i])
+      return(len(stack)==0)
