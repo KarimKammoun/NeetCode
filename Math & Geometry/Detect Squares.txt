@@ -1,0 +1,35 @@
+class CountSquares:
+
+    def __init__(self,points=None):
+        if points is None:
+            points = [[0 for _ in range(1000)] for _ in range(1000)]
+        self.points = points
+
+        
+
+    def add(self, point: List[int]) -> None:
+        self.points[point[0]][point[1]]+=1
+
+    def count(self, point: List[int]) -> int:
+        k=1
+        x=point[0]
+        y=point[1]
+        res=0
+
+
+        while (x+k < 1000 or x-k >= 0) or (y+k < 1000 or y-k >= 0):
+            if x+k < 1000 and y+k < 1000:
+                res += self.points[x+k][y] * self.points[x][y+k] * self.points[x+k][y+k]
+            if x+k < 1000 and y-k >= 0:
+                res += self.points[x+k][y] * self.points[x][y-k] * self.points[x+k][y-k]
+            if x-k >= 0 and y+k < 1000:
+                res += self.points[x-k][y] * self.points[x][y+k] * self.points[x-k][y+k]
+            if x-k >= 0 and y-k >= 0:
+                res += self.points[x-k][y] * self.points[x][y-k] * self.points[x-k][y-k]
+            
+            k=k+1
+
+
+
+        return res
+        

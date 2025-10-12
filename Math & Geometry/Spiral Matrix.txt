@@ -1,0 +1,48 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        n = len(matrix)
+        m = len(matrix[0])
+        res = []
+        
+        x = 0 
+        y = 0  
+        
+        k = n  
+        z = m  
+
+        while k > 0 and z > 0:
+            for j in range(z):
+                res.append(matrix[x][y])
+                y += 1
+            y -= 1
+            x += 1
+            k -= 1  
+
+            if k <= 0: break
+
+            for i in range(k):
+                res.append(matrix[x][y])
+                x += 1
+            x -= 1
+            y -= 1
+            z -= 1  
+
+            if z <= 0: break
+
+            for j in range(z):
+                res.append(matrix[x][y])
+                y -= 1
+            y += 1
+            x -= 1
+            k -= 1  
+
+            if k <= 0: break
+
+            for i in range(k):
+                res.append(matrix[x][y])
+                x -= 1
+            x += 1
+            y += 1
+            z -= 1  
+
+        return res
